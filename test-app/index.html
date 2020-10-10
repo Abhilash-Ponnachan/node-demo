@@ -1,0 +1,31 @@
+<html>
+<head>
+    <title>Test App</title>
+    <script src="scripts/client.js"></script>
+    <script>
+        function isNumberKey(evt){
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+            return true;
+        }    
+    </script>
+</head>
+<body>
+    <center>
+        <h1>This is a test app</h1>
+        <br>
+        <p1>Click the button to submit the data in the textbox:
+        <br><br>
+        <label>Input Data:</label>
+        <input type="text" id="txtInput" style="text-align: right" onkeypress="return isNumberKey(event)" />
+        <br><br>
+        <button id="btnAction" onclick="submitData()">Do Action</button>
+        <br><br>
+        <div style="width:50%; height: 50%; border: 1px solid #000000">
+            <textarea readonly id="txtOutput"  style="position: relative; margin: 10px 10px 10px 10px; width:90%; height: 90%;font-size: 14pt;"></textarea>
+        </div>
+        <br><br>
+        <button id="btnClear" onclick="clearData()">Clear</button>
+</body>
+</html>
