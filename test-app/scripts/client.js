@@ -24,10 +24,17 @@ function submitData(){
         var data = {data: txtInput.value};
         postData(API, data)
             .then(respData => {
-                setValue(JSON.stringify(respData));
+                if (respData.error){
+                    setValue(respData.msg);
+                } else {
+                    const prime_qual = respData.is_prime ? 'IS' : 'is NOT'
+                    setValue(`${txtInput.value} ${prime_qual} prime.`);
+                }
+                //console.log(JSON.stringify(respData));
               })
             .catch(err => {
                 console.log(err);
+                setValue(err);
               });
     }
 }

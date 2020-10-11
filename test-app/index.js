@@ -24,11 +24,10 @@ router.post('/apis/doaction', (req, res) => {
        callApis.getData(srvEndPt, data)
             .then(data => {
                   res.json(data);
-                  //console.log(data);
                  })
             .catch(err => {
-                  res.json(err);
-                  //console.log(err);
+                  res.json({error: true, msg: JSON.stringify(err)});
+                  console.log(err);
                  });
       }
   });
