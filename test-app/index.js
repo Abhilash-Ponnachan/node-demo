@@ -7,8 +7,11 @@ const app = express();
 app.use(bodyParser.json());
 const router = express.Router();
 
-const port = 3000;
-const srvEndPt = 'http://localhost:3001/apis/check-prime/';
+const port = process.env.PORT || 3000;
+const srvHost = process.env.SRV_HOST || 'localhost';
+const srvPort = process.env.SRV_PORT || 3001;
+//const srvEndPt = 'http://localhost:3001/apis/check-prime/';
+const srvEndPt = `http://${srvHost}:${srvPort}/apis/check-prime/`;
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '/index.html'));
@@ -33,7 +36,7 @@ router.post('/apis/doaction', (req, res) => {
   });
 
 app.use('/', router);
-app.listen(process.env.port || port
+app.listen(port
     , () => console.log(`listening on port ${port}`));
 
 

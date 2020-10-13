@@ -5,7 +5,7 @@ const primes = require('./utils/primes.js');
 const app = express();
 const router = express.Router();
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 const maxPrime = 2000;
 const listPrimes = primes.genPrimes(maxPrime);
 const chkPrimeEndPt = '/apis/check-prime/:number';
@@ -16,7 +16,7 @@ router.get(chkPrimeEndPt, (req, res) => {
   });
 
 app.use('/', router);
-app.listen(process.env.port || port
+app.listen(port
     , () => console.log(`listening on port ${port}`));
 
 
